@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IntroToMVVM.Views.ToDoList"
+             xmlns:local="clr-namespace:IntroToMVVM.ViewModels">
+    <ContentPage.BindingContext>
+        <local:ToDoListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Entry x:Name="InputField"
+                   Text="{Binding NewToDoText}"
+                   Placeholder="Enter a todo here"
+                   ReturnCommand="{Binding AddToDoCommand}"
+                   />
+            <ListView x:Name="ListToDo"
+                      ItemsSource="{Binding ToDoItems}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding IsCompleted}" />
+                                <Label Text="{Binding Text}"
+                                       VerticalTextAlignment="Center"
+                                       WidthRequest="400"
+                                       FontSize="Large"/>
+                                <Label Text="{Binding DateCreated}"
+                                       VerticalTextAlignment="Center"
+                                       Margin="15,0,0,0"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IntroToMVVM.Views.SongRatingList"
+             xmlns:local="clr-namespace:IntroToMVVM.ViewModels">
+    <ContentPage.BindingContext>
+        <local:SongRatingViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Entry x:Name="SongInputField"
+                   Text="{Binding NewSongName}"
+                   Placeholder="Enter Song Name"
+                   />
+            <Entry x:Name="BandInputField"
+                   Text="{Binding NewBandName}"
+                   Placeholder="Enter Band Name"
+                   />
+            <Slider x:Name="Rating"
+                    Maximum="5"
+                    Minimum="0"
+                    Value="{Binding NewRating}"
+                    ValueChanged="ChangeValue"
+                    />
+            <Label  x:Name="SliderLabel"
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    />
+            <Button x:Name="AddButton"
+                    Text="Add Rating"
+                    Command="{Binding AddRatingCommand}"
+                    />
+            <ListView x:Name="ListToDo"
+                      ItemsSource="{Binding SongRatings}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding SongName}"
+                                       VerticalTextAlignment="Center"
+                                       WidthRequest="300"
+                                       FontSize="Large"/>
+                                    <Label Text="{Binding BandName}"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="Small"/>
+                                </StackLayout>
+                                <Label Text="{Binding StarRating}"
+                                       FontSize="Large"
+                                       TextColor="Goldenrod"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
