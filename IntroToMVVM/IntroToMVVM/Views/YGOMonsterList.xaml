@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:IntroToMVVM.ViewModels"
+             x:Class="IntroToMVVM.Views.YGOMonsterList">
+    <ContentPage.BindingContext>
+        <local:YGOMonsterViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="10" BackgroundColor="Black">
+            <CarouselView x:Name="ListToDo"
+                          ItemsSource="{Binding YGOMonsters}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" BackgroundColor="#bf944a">
+                            <Grid BackgroundColor="#bf944a" Margin="10,10,10,0">
+                                <BoxView BackgroundColor="Black" />
+                                <Grid BackgroundColor="#bf944a" ColumnDefinitions="1*,0.2*" Margin="1" HeightRequest="40">
+                                    <Label Text="{Binding CardName}"
+                                           FontSize="27"
+                                           VerticalTextAlignment="Center"
+                                           FontAttributes="Bold"
+                                           Margin="10,0,0,0"/>
+                                    <Label Text="{Binding Attribute}"
+                                       Grid.Column="1"
+                                       FontSize="27"
+                                           VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,15,0"/>
+                                </Grid>
+                            </Grid>
+                            <Label Text="{Binding LevelStars}"
+                                       FontSize="25"
+                                       Margin="0,0,18,0"
+                                       VerticalTextAlignment="Center"
+                                           TextColor="#eb6303"
+                                       HorizontalOptions="End" />
+                            <Frame BorderColor="Black"
+                                       BackgroundColor="Black"
+                                       Padding="3"
+                                           HeightRequest="350"
+                                           WidthRequest="100"
+                                           Margin="25,0,25,0" >
+                                <Image Source="{Binding Image}"
+                                           Aspect="Fill"/>
+                            </Frame>
+                            <StackLayout BackgroundColor="#efe7d0"
+                                             Margin="13,10,13,13">
+                                <Label Text="{Binding Type, StringFormat='[{0}]'}"
+                                           FontSize="20"
+                                           Margin="5,5,0,0"
+                                           FontAttributes="Bold"/>
+                                <Label Text="{Binding Text}"
+                                               HeightRequest="80"
+                                               FontSize="14"
+                                               Margin="5,-5,0,0"
+                                               FontAttributes="Italic,Bold"/>
+                                <Line Stroke="black"
+                                          X1="10"
+                                          X2="355"
+                                          />
+                                <StackLayout Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,0,15,10">
+                                    <Label Text="{Binding Defense, StringFormat='DEF/ {0}'}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"/>
+                                    <Label Text="{Binding Attack, StringFormat='ATK/ {0}'}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

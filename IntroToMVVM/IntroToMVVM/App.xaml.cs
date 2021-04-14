@@ -11,7 +11,7 @@ namespace IntroToMVVM
         {
             InitializeComponent();
 
-            MainPage = new SongRatingList();
+            MainPage = new YGOMonsterList();
         }
 
         protected override void OnStart()
